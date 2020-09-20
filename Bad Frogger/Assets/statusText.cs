@@ -28,6 +28,7 @@ public class statusText : MonoBehaviour
     {
         scoreText(score, damage);
         timeCount();
+        damageCount();
         if (damage >= 5)
         {
             scoreText("Game Over");
@@ -61,7 +62,13 @@ public class statusText : MonoBehaviour
             (Math.Round(enemyFive.position.x) == Math.Round(player.position.x) & Math.Round(enemyFive.position.y) == Math.Round(player.position.y))
             )
         {
-            damage += 1;
+            timer += Time.deltaTime;
+            if (timer >= 0.25) //New timer >=2 | Old timer >=1
+            {
+                timer = 0;
+                damage += 1;
+            }
+
         }
     }
 }
