@@ -11,7 +11,8 @@ public class statusText : MonoBehaviour
     public int damage;
     public int time;
     private float timer;
-    public Transform player;
+    public GameObject playerObject;
+    public Transform playerPosition;
     public Transform enemyOne;
     public Transform enemyTwo;
     public Transform enemyThree;
@@ -29,46 +30,65 @@ public class statusText : MonoBehaviour
         scoreText(score, damage);
         timeCount();
         damageCount();
+
         if (damage >= 5)
         {
             scoreText("Game Over");
+            if (playerObject != null)
+                Destroy(playerObject);
+
         }
+
     }
     public void scoreText(string _status)
     {
+        if (_status == "Game Over")
+        {
+            text.text = _status + " | Score: " + score.ToString() + " | Elapsed Time: " + time.ToString();
+        }
+        else
         text.text = _status;
     }
-    public void scoreText (int _score, int _damage)
+    public void scoreText(int _score, int _damage)
     {
         text.text = "Score: " + _score.ToString() + " | Damage: " + _damage + " Time: " + time.ToString();
     }
     public void timeCount()
     {
-        timer += Time.deltaTime;
-        if (timer >= 1) //New timer >=2 | Old timer >=1
+        if (playerObject != null)
         {
-            timer = 0;
-            time += 1;
+            timer += Time.deltaTime;
+            if (timer >= 1)
+            {
+                timer = 0;
+                time += 1;
+            }
         }
+
     }
 
     public void damageCount()
     {
-        if (
-            (Math.Round(enemyOne.position.x) == Math.Round(player.position.x) & Math.Round(enemyOne.position.y) == Math.Round(player.position.y)) ||
-            (Math.Round(enemyTwo.position.x) == Math.Round(player.position.x) & Math.Round(enemyTwo.position.y) == Math.Round(player.position.y)) ||
-            (Math.Round(enemyThree.position.x) == Math.Round(player.position.x) & Math.Round(enemyThree.position.y) == Math.Round(player.position.y)) ||
-            (Math.Round(enemyFour.position.x) == Math.Round(player.position.x) & Math.Round(enemyFour.position.y) == Math.Round(player.position.y)) ||
-            (Math.Round(enemyFive.position.x) == Math.Round(player.position.x) & Math.Round(enemyFive.position.y) == Math.Round(player.position.y))
-            )
+        if (playerObject != null)
         {
-            timer += Time.deltaTime;
-            if (timer >= 0.25) //New timer >=2 | Old timer >=1
+            if (
+            (Math.Round(enemyOne.position.x) == Math.Round(playerPosition.position.x) & Math.Round(enemyOne.position.y) == Math.Round(playerPosition.position.y)) ||
+            (Math.Round(enemyTwo.position.x) == Math.Round(playerPosition.position.x) & Math.Round(enemyTwo.position.y) == Math.Round(playerPosition.position.y)) ||
+            (Math.Round(enemyThree.position.x) == Math.Round(playerPosition.position.x) & Math.Round(enemyThree.position.y) == Math.Round(playerPosition.position.y)) ||
+            (Math.Round(enemyFour.position.x) == Math.Round(playerPosition.position.x) & Math.Round(enemyFour.position.y) == Math.Round(playerPosition.position.y)) ||
+            (Math.Round(enemyFive.position.x) == Math.Round(playerPosition.position.x) & Math.Round(enemyFive.position.y) == Math.Round(playerPosition.position.y))
+            )
             {
-                timer = 0;
-                damage += 1;
-            }
+                timer += Time.deltaTime;
+                if (timer >= 0.25)
+                {
+                    timer = 0;
+                    damage += 1;
+                }
 
+            }
         }
+
+        
     }
 }

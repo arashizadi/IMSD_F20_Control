@@ -944,7 +944,8 @@ MonoBehaviour:
   score: 0
   damage: 0
   time: 0
-  player: {fileID: 1328384580}
+  playerObject: {fileID: 1328384575}
+  playerPosition: {fileID: 1328384580}
   enemyOne: {fileID: 1283150936}
   enemyTwo: {fileID: 76688975}
   enemyThree: {fileID: 1987827139}
@@ -982,7 +983,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Status
+  m_Text: Ready
 --- !u!222 &1693217470
 CanvasRenderer:
   m_ObjectHideFlags: 0

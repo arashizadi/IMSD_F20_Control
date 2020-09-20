@@ -29,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 0.5) //New timer >=2 | Old timer >=1
+        if (timer >= 0.5)
         {
             Random rNG = new Random(); //New
             timer = 0;
