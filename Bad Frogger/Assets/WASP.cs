@@ -16,31 +16,30 @@ public class WASP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        KeyMovement("W");
-        KeyMovement("S");
+        KeyMovement();
     }
-    private void KeyMovement(string key)
+    private void KeyMovement()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)) //UP
         {
-            _transform.position += new Vector3(0, 0.2f, 0) * speed * Time.deltaTime;
+            _transform.position += new Vector3(0, 0.5f, 0) * speed * Time.deltaTime;
 
         }
-/*        if (Input.GetKeyUp(KeyCode.W))
+        if (Input.GetKey(KeyCode.S)) //Down
         {
-            _transform.position += new Vector3(0, 0.01f, 0) * speed * Time.deltaTime;
-        }*/
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            _transform.position += new Vector3(0, -0.125f, 0) * speed * Time.deltaTime;
+            _transform.position += new Vector3(0, -0.3f, 0) * speed * Time.deltaTime;
 
         }
-/*        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKey(KeyCode.D)) //Right
         {
-            _transform.position += new Vector3(0, -0.01f, 0) * speed * Time.deltaTime;
-        }*/
+            _transform.position += new Vector3(0.25f, 0, 0) * speed * Time.deltaTime;
 
+        }
+        if (Input.GetKey(KeyCode.A)) //Left
+        {
+            _transform.position += new Vector3(-0.25f, 0, 0) * speed * Time.deltaTime;
+
+        }
 
     }
 }
