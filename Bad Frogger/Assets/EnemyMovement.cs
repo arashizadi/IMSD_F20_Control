@@ -21,13 +21,18 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 1)
+        if (timer >= 0.7)
         {
             timer = 0;
             _transform.position += new Vector3(Random.Range(-5.00f, 5.00f), 0, 0) * speed;
         }
         if (_transform.position.x > 10 || _transform.position.x < -10)
-            _transform.position = new Vector3(0, 0, 0);
+        {
+            var restoreYPosition = _transform.position.y;
+            var restoreZPosition = _transform.position.z;
+            _transform.position = new Vector3(0, restoreYPosition, restoreZPosition);
+
+        }
 
     }
 }

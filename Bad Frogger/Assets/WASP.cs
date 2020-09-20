@@ -9,7 +9,7 @@ public class WASP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 1f;
+        speed = 10f;
 
     }
 
@@ -31,10 +31,10 @@ public class WASP : MonoBehaviour
 
             }
         }
-        if (Input.GetKeyUp(KeyCode.W))
+/*        if (Input.GetKeyUp(KeyCode.W))
         {
             _transform.position += new Vector3(0, 0.01f, 0) * speed * Time.deltaTime;
-        }
+        }*/
 
         if (Input.GetKey(KeyCode.S))
         {
@@ -46,10 +46,10 @@ public class WASP : MonoBehaviour
 
             }
         }
-        if (Input.GetKeyUp(KeyCode.S))
+/*        if (Input.GetKeyUp(KeyCode.S))
         {
             _transform.position += new Vector3(0, -0.01f, 0) * speed * Time.deltaTime;
-        }
+        }*/
 
 
     }
