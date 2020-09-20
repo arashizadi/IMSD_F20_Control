@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
@@ -8,19 +9,18 @@ public class EnemyMovement : MonoBehaviour
 {
     private bool leftToRightDirection;
     private float speed;
-    public float _speed;
     private float timer;
     public Transform _transform;
     // Start is called before the first frame update
     void Start()
     {
-        timer = 0.75f;
-        _speed = 1f;
-        speed = UnityEngine.Random.Range(1,5) * _speed;
+        timer = 1f;
+        speed = UnityEngine.Random.Range(2,5.5f) * 1.15f;
+        Debug.Log("Enemy Speed: " + speed);
         { //New
             var restoreYPosition = _transform.position.y;
             var restoreZPosition = _transform.position.z;
-            _transform.position = new Vector3(UnityEngine.Random.Range(-4.00f, 4.00f), restoreYPosition, restoreZPosition);
+            _transform.position = new Vector3(UnityEngine.Random.Range(-9.00f, 9.00f), restoreYPosition, restoreZPosition);
         }
 
     }
@@ -29,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 2) //New timer >=2 | Old timer >=1
+        if (timer >= 0.5) //New timer >=2 | Old timer >=1
         {
             Random rNG = new Random(); //New
             timer = 0;
@@ -43,15 +43,21 @@ public class EnemyMovement : MonoBehaviour
             //_transform.position += new Vector3(UnityEngine.Random.Range(-5.00f, 5.00f), 0, 0) * speed;
         }
         if (leftToRightDirection)
-            _transform.position += new Vector3(0.01f, 0, 0);
+            _transform.position += new Vector3(0.01f, 0, 0) * speed;
         else
-            _transform.position -= new Vector3(0.01f, 0, 0);
+            _transform.position -= new Vector3(0.01f, 0, 0) * speed;
 
-        if (_transform.position.x > 10 || _transform.position.x < -10)
+        if (_transform.position.x > 10)
         {
             var restoreYPosition = _transform.position.y;
             var restoreZPosition = _transform.position.z;
-            _transform.position = new Vector3(0, restoreYPosition, restoreZPosition);
+            leftToRightDirection = false;
+        }
+        if (_transform.position.x < -10)
+        {
+            var restoreYPosition = _transform.position.y;
+            var restoreZPosition = _transform.position.z;
+            leftToRightDirection = true;
 
         }
 

@@ -23,13 +23,8 @@ public class WASP : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            _transform.position += new Vector3(0, 0.05f, 0) * speed * Time.deltaTime;
+            _transform.position += new Vector3(0, 0.2f, 0) * speed * Time.deltaTime;
 
-            if (Input.GetKey(KeyCode.W) & Input.GetKey(KeyCode.W))
-            {
-                _transform.position += new Vector3(0, 0.1f, 0) * speed * Time.deltaTime;
-
-            }
         }
 /*        if (Input.GetKeyUp(KeyCode.W))
         {
@@ -38,13 +33,8 @@ public class WASP : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
-            _transform.position += new Vector3(0, -0.05f, 0) * speed * Time.deltaTime;
+            _transform.position += new Vector3(0, -0.125f, 0) * speed * Time.deltaTime;
 
-            if (Input.GetKey(KeyCode.S) & Input.GetKey(KeyCode.S))
-            {
-                _transform.position += new Vector3(0, -0.1f, 0) * speed * Time.deltaTime;
-
-            }
         }
 /*        if (Input.GetKeyUp(KeyCode.S))
         {
