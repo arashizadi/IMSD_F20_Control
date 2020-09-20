@@ -8,7 +8,7 @@ public class scoreSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _transform.position = new Vector3(Random.Range(-8f, 8f), Random.Range(-8f, 8f), 0);
+        _transform.position = new Vector3(Random.Range(-10f, 10f), Random.Range(-9.2f, 1.42f), 0);
     }
 
     // Update is called once per frame

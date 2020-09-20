@@ -13,8 +13,6 @@ public class statusText : MonoBehaviour
     private float timer;
     public GameObject playerObject;
     public Transform playerPosition;
-    public GameObject pillObject;
-    public GameObject pillNew;
     public Transform pillPosition;
     public Transform enemyOne;
     public Transform enemyTwo;
@@ -40,10 +38,9 @@ public class statusText : MonoBehaviour
             scoreText("Game Over");
             if (playerObject != null)
                 Destroy(playerObject);
-
         }
-
     }
+
     public void scoreText(string _status)
     {
         if (_status == "Game Over")
@@ -53,10 +50,12 @@ public class statusText : MonoBehaviour
         else
             text.text = _status;
     }
+
     public void scoreText(int _score, int _damage)
     {
         text.text = "Score: " + _score.ToString() + " | Damage: " + _damage + " Time: " + time.ToString();
     }
+
     public void timeCount()
     {
         if (playerObject != null)
@@ -68,7 +67,6 @@ public class statusText : MonoBehaviour
                 time += 1;
             }
         }
-
     }
 
     public void damageCount()
@@ -89,18 +87,13 @@ public class statusText : MonoBehaviour
                     timer = 0;
                     damage += 1;
                 }
-
             }
         }
-
-
     }
 
     public void scoreCount()
     {
-        if (pillObject == null)
-            pillObject = Instantiate(pillNew, new Vector3(UnityEngine.Random.Range(-9f, 9f), UnityEngine.Random.Range(-9f, 9f), 0), Quaternion.identity);
-        else
+        if (playerObject != null)
         {
             if (Math.Round(pillPosition.position.x) == Math.Round(playerPosition.position.x) & Math.Round(pillPosition.position.y) == Math.Round(playerPosition.position.y))
             {
@@ -109,10 +102,19 @@ public class statusText : MonoBehaviour
                 {
                     timer = 0;
                     score += 1;
-                    Destroy(pillObject);
+                    pillPosition.position = new Vector3(UnityEngine.Random.Range(-10f, 10f), UnityEngine.Random.Range(-9.2f, 1.42f), 0);
+                    if (pillPosition.position.x < -10 || pillPosition.position.y <-9.2f || pillPosition.position.x < 10 || pillPosition.position.y < 1.42f)
+                    {
+                        pillPosition.position = new Vector3(0, 0, 0);
+                        pillPosition.position += new Vector3(UnityEngine.Random.Range(-10f, 10f), UnityEngine.Random.Range(-9.2f, 1.42f), 0);
+                    }
                 }
             }
         }
+    }
+
+    public void scoreColor()
+    {
 
     }
 }
