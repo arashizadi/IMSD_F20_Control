@@ -13,6 +13,9 @@ public class statusText : MonoBehaviour
     private float timer;
     public GameObject playerObject;
     public Transform playerPosition;
+    public GameObject pillObject;
+    public GameObject pillNew;
+    public Transform pillPosition;
     public Transform enemyOne;
     public Transform enemyTwo;
     public Transform enemyThree;
@@ -30,6 +33,7 @@ public class statusText : MonoBehaviour
         scoreText(score, damage);
         timeCount();
         damageCount();
+        scoreCount();
 
         if (damage >= 5)
         {
@@ -47,7 +51,7 @@ public class statusText : MonoBehaviour
             text.text = _status + " | Score: " + score.ToString() + " | Elapsed Time: " + time.ToString();
         }
         else
-        text.text = _status;
+            text.text = _status;
     }
     public void scoreText(int _score, int _damage)
     {
@@ -89,6 +93,26 @@ public class statusText : MonoBehaviour
             }
         }
 
-        
+
+    }
+
+    public void scoreCount()
+    {
+        if (pillObject == null)
+            pillObject = Instantiate(pillNew, new Vector3(UnityEngine.Random.Range(-9f, 9f), UnityEngine.Random.Range(-9f, 9f), 0), Quaternion.identity);
+        else
+        {
+            if (Math.Round(pillPosition.position.x) == Math.Round(playerPosition.position.x) & Math.Round(pillPosition.position.y) == Math.Round(playerPosition.position.y))
+            {
+                timer += Time.deltaTime;
+                if (timer >= 0.25)
+                {
+                    timer = 0;
+                    score += 1;
+                    Destroy(pillObject);
+                }
+            }
+        }
+
     }
 }
