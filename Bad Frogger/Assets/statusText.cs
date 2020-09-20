@@ -112,9 +112,4 @@ public class statusText : MonoBehaviour
             }
         }
     }
-
-    public void scoreColor()
-    {
-
-    }
 }
