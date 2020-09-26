@@ -7,13 +7,12 @@ public class Jump : MonoBehaviour
     private float time;
     public Transform _transform;
     private float airHeightMax;
-    private bool leftToRight;
+    private bool phaseAir;
     private bool lockCD;
     // Start is called before the first frame update
     void Start()
     {
-        leftToRight = true;
-        lockCD = false;
+        phaseAir = false;
         airHeightMax = 1000;
         time = 0;
 
@@ -22,20 +21,23 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lockCD = false;
         time += Time.deltaTime;
-        if (time >= 1 && lockCD == false && Input.GetKeyDown(KeyCode.Space))
+        if (lockCD == false && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)))
         {
-            lockCD = true;
             for (int i = 1; i < airHeightMax; i++)
             {
-                if (leftToRight && lockCD == true)
-                    _transform.position += new Vector3(0, 0.005F, 0) * i / airHeightMax;
-                if (!leftToRight && lockCD == true)
-                    _transform.position -= new Vector3(0, 0.005F, 0) * i / airHeightMax;
+                if (!phaseAir)
+                    _transform.position += new Vector3(0, 0.005F, 0) * (i / (airHeightMax + 1000));
+                if (phaseAir)
+                    _transform.position -= new Vector3(0, 0.005F, 0) * (i / (airHeightMax + 1000));
                 if (i <= 999)
-                    lockCD = false;
+                    phaseAir = true;
             }
+            phaseAir = false;
+        }
+        else if (lockCD == false && (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0)))
+        {
+
         }
     }
 }
