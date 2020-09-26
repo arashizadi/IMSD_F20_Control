@@ -22,10 +22,11 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lockCD = true;
+        lockCD = false;
         time += Time.deltaTime;
-        if (time >= 1 && Input.GetKey(KeyCode.Space))
+        if (time >= 1 && lockCD == false && Input.GetKeyDown(KeyCode.Space))
         {
+            lockCD = true;
             for (int i = 1; i < airHeightMax; i++)
             {
                 if (leftToRight && lockCD == true)
